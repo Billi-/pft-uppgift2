@@ -4,7 +4,7 @@
 
 =end
 
-class Boxmachine21d
+class Boxmachine
 
 	attr_accessor :box_size
 	attr_reader :storage
@@ -44,7 +44,7 @@ class Boxmachine21d
 	end
 end
 
-egg_packer = Boxmachine21d.new( 1000, 6 )
+egg_packer = Boxmachine.new( 1000, 6 )
 puts egg_packer.storage
 no_of_boxes = egg_packer.fill
 puts no_of_boxes # should be 166
