@@ -44,3 +44,16 @@ class Boxmachine21d
 	end
 end
 
+egg_packer = Boxmachine21d.new( 1000, 6 )
+puts egg_packer.storage
+no_of_boxes = egg_packer.fill
+puts no_of_boxes # should be 166
+puts egg_packer.storage # should be 4
+egg_packer.load(1000)
+puts egg_packer.fill # should be 167
+puts egg_packer.storage # should be 2
+egg_packer.load(50)
+puts egg_packer.fill(10).inspect # should be ”nil”
+puts egg_packer.fill(5) # should be 5
+puts egg_packer.storage # should be 22
+puts egg_packer # uses class to_s method
