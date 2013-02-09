@@ -18,5 +18,5 @@ NoMethodError: undefined method `fill_boxes' for #<Uppgift21Test:0x007f91ed0928e
 =end
 
 def fill_boxes( total_amount, box_size )
-
+	return total_amount/box_size
 end
