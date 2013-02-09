@@ -55,5 +55,18 @@ class Uppgift21cTest < Test::Unit::TestCase
 
 	end
 
+	def test_boxmachine_box_size_getter
+
+		#setup
+		total_amount = 1000
+		box_size = 6
+
+		my_machine = Boxmachine.new( total_amount, box_size )
+
+		# check that we have total_amount in storage
+		assert_equal( box_size, my_machine.box_size )
+
+	end
+
 
 end
