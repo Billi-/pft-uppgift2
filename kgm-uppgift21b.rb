@@ -1,11 +1,18 @@
 # encoding: utf-8
 
-# 1. vi vet att vi har 1000 ägg, 6 ägg per låda
-total_amount = 1000
-in_box = 6
+# när vi kör testsviten med en tom kgm-uppgift21b.rb får vi följande fel:
 
-# 2. beräkna antal fulla lådor
-no_of_boxes = total_amount / in_box
+=begin
+# Running tests:
 
-# 3. skriv ut antalet, skall bli 166 enl. uppgiften
-puts no_of_boxes
+E
+
+Finished tests in 0.000763s, 1310.6160 tests/s, 0.0000 assertions/s.
+
+  1) Error:
+test_fill_boxes(Uppgift21Test):
+NoMethodError: undefined method `fill_boxes' for #<Uppgift21Test:0x007f91ed0928e8>
+    kgm-uppgift21-test.rb:23:in `test_fill_boxes'
+
+1 tests, 0 assertions, 0 failures, 1 errors, 0 skips
+=end
