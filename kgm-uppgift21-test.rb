@@ -64,4 +64,10 @@ class Uppgift21cTest < Test::Unit::TestCase
 		my_machine = setup_boxmachine( 6, 6 )
 		assert_equal( 1, my_machine.fill )
 	end
+
+	def test_boxmachine_fill_unable_to_fill_any_boxes
+
+		my_machine = setup_boxmachine( 5, 6 )
+		assert_equal( 0, my_machine.fill )
+	end		
 end
