@@ -1,18 +1,7 @@
 # encoding: utf-8
 
 =begin
-# Running tests:
 
-..F....
-
-Finished tests in 0.002488s, 2813.5048 tests/s, 3215.4341 assertions/s.
-
-  1) Failure:
-test_boxmachine_fill_deducts_from_storage(Uppgift21cTest) [kgm-uppgift21-test.rb:78]:
-<4> expected but was
-<10>.
-
-7 tests, 8 assertions, 1 failures, 0 errors, 0 skips
 =end
 
 class Boxmachine
@@ -34,3 +23,12 @@ class Boxmachine
 	end
 
 end
+
+
+# fulfill exercise specs by printing amounts
+egg_packer = Boxmachine.new( 1000, 6 )
+puts egg_packer.storage
+puts egg_packer.box_size
+no_of_boxes = egg_packer.fill
+puts no_of_boxes
+puts egg_packer.storage
