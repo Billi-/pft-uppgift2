@@ -1,20 +1,19 @@
 # encoding: utf-8
 
 =begin
+	
 # Running tests:
 
-.E
+.E.
 
-Finished tests in 0.000897s, 2229.6544 tests/s, 1114.8272 assertions/s.
+Finished tests in 0.000946s, 3171.2474 tests/s, 2114.1649 assertions/s.
 
   1) Error:
-test_new_boxmachine(Uppgift21cTest):
-ArgumentError: wrong number of arguments(2 for 0)
-    kgm-uppgift21-test.rb:37:in `initialize'
-    kgm-uppgift21-test.rb:37:in `new'
-    kgm-uppgift21-test.rb:37:in `test_new_boxmachine'
+test_boxmachine_storage_getter(Uppgift21cTest):
+NoMethodError: undefined method `storage' for #<Boxmachine:0x007fc17902f638 @storage=1000, @box_size=6>
+    kgm-uppgift21-test.rb:54:in `test_boxmachine_storage_getter'
 
-2 tests, 1 assertions, 0 failures, 1 errors, 0 skips
+3 tests, 2 assertions, 0 failures, 1 errors, 0 skips
 
 =end
 
