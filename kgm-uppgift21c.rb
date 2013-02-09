@@ -20,4 +20,9 @@ ArgumentError: wrong number of arguments(2 for 0)
 
 class Boxmachine
 
+	def initialize( total_amount, box_size )
+		# transfer initial values into instance variables
+		@storage = total_amount
+		@box_size = box_size
+	end
 end
