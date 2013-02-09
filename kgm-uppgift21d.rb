@@ -33,5 +33,9 @@ class Boxmachine
 		return no_of_filled_boxes
 	end
 
+	def load( added_amount )
+		@storage += added_amount
+	end
+
 end
 
