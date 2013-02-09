@@ -26,7 +26,11 @@ class Boxmachine
 	end
 
 	def fill
-		return @storage/@box_size
+		no_of_filled_boxes = @storage/@box_size
+
+		@storage -= no_of_filled_boxes*@box_size
+
+		return no_of_filled_boxes
 	end
 
 end
