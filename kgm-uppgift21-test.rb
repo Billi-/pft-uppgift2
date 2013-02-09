@@ -28,45 +28,35 @@ require "./kgm-uppgift21c.rb"
 
 class Uppgift21cTest < Test::Unit::TestCase
 
+	def setup_boxmachine( total_amount = 1000, box_size = 6 )
+		return my_machine = Boxmachine.new( total_amount, box_size )
+	end
 
 	def test_new_boxmachine
 
-		#setup
-		total_amount = 1000
-		box_size = 6
-
-		my_machine = Boxmachine.new( total_amount, box_size )
+		# create machine using default inital values
+		my_machine = setup_boxmachine
 
 		# check we got something back (i.e. my_machine != nil)
 		assert( my_machine )
-
 	end
 
 	def test_boxmachine_storage_getter
 
-		#setup
 		total_amount = 1000
-		box_size = 6
-
-		my_machine = Boxmachine.new( total_amount, box_size )
+		my_machine = setup_boxmachine( total_amount )
 
 		# check that we have total_amount in storage
 		assert_equal( total_amount, my_machine.storage )
-
 	end
 
 	def test_boxmachine_box_size_getter
 
-		#setup
-		total_amount = 1000
 		box_size = 6
-
-		my_machine = Boxmachine.new( total_amount, box_size )
+		my_machine = setup_boxmachine( box_size )
 
 		# check that we have total_amount in storage
 		assert_equal( box_size, my_machine.box_size )
-
 	end
-
 
 end
