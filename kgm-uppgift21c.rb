@@ -19,6 +19,8 @@ NoMethodError: undefined method `storage' for #<Boxmachine:0x007fc17902f638 @sto
 
 class Boxmachine
 
+	attr_accessor :storage, :box_size
+
 	def initialize( total_amount, box_size )
 		# transfer initial values into instance variables
 		@storage = total_amount
