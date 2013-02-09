@@ -4,17 +4,16 @@
 	
 # Running tests:
 
-.E.
+..E..
 
-Finished tests in 0.000946s, 3171.2474 tests/s, 2114.1649 assertions/s.
+Finished tests in 0.001326s, 3770.7391 tests/s, 3016.5913 assertions/s.
 
   1) Error:
-test_boxmachine_storage_getter(Uppgift21cTest):
-NoMethodError: undefined method `storage' for #<Boxmachine:0x007fc17902f638 @storage=1000, @box_size=6>
-    kgm-uppgift21-test.rb:54:in `test_boxmachine_storage_getter'
+test_boxmachine_fill_one_box(Uppgift21cTest):
+NoMethodError: undefined method `fill' for #<Boxmachine:0x007f8f7a826bd8 @storage=6, @box_size=6>
+    kgm-uppgift21-test.rb:65:in `test_boxmachine_fill_one_box'
 
-3 tests, 2 assertions, 0 failures, 1 errors, 0 skips
-
+5 tests, 4 assertions, 0 failures, 1 errors, 0 skips
 =end
 
 class Boxmachine

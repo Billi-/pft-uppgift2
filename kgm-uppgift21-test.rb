@@ -59,4 +59,9 @@ class Uppgift21cTest < Test::Unit::TestCase
 		assert_equal( box_size, my_machine.box_size )
 	end
 
+	def test_boxmachine_fill_one_box
+
+		my_machine = setup_boxmachine( 6, 6 )
+		assert_equal( 1, my_machine.fill )
+	end
 end
