@@ -25,4 +25,9 @@ class Boxmachine
 		@storage = total_amount
 		@box_size = box_size
 	end
+
+	def fill
+		return @storage/@box_size
+	end
+
 end
