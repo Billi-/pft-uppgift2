@@ -165,5 +165,8 @@ class Uppgift21dTest < Test::Unit::TestCase
 		assert_equal( 10, my_machine.storage )
 	end
 
-
+	def test_to_s
+		my_machine = setup_boxmachine( 1,1 )
+		assert_equal( "The machine has 1 units in storage and is set to a box size of 1.", my_machine.to_s )
+	end
 end
