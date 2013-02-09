@@ -1,18 +1,6 @@
 # encoding: utf-8
 
 =begin
-# Running tests:
-
-.................F
-
-Finished tests in 0.004362s, 4126.5475 tests/s, 5272.8106 assertions/s.
-
-  1) Failure:
-test_to_s(Uppgift21dTest) [kgm-uppgift21-test.rb:170]:
-<"The machine has 1 units in storage and is set to a box size of 1."> expected but was
-<"#<Boxmachine21d:0x007faf5a82ab20>">.
-
-18 tests, 23 assertions, 1 failures, 0 errors, 0 skips
 
 =end
 
@@ -51,5 +39,8 @@ class Boxmachine21d
 		@storage += added_amount
 	end
 
+	def to_s
+		"The machine has #{@storage} units in storage and is set to a box size of #{@box_size}."
+	end
 end
 
