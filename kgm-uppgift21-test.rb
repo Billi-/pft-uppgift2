@@ -7,7 +7,7 @@ require "test/unit"
 require "./kgm-uppgift21b.rb"
 
 # vår testklass ärver från testsviten
-class Uppgift21Test < Test::Unit::TestCase
+class Uppgift21bTest < Test::Unit::TestCase
 
 	# metoder med i klassen med namn som börjar med test_ körs automagiskt
 
@@ -21,5 +21,23 @@ class Uppgift21Test < Test::Unit::TestCase
 
 		# assert_equal(expected,actual); är vad vi väntar oss == vad vi faktiskt får?
 		assert_equal( expected_no_of_boxes, fill_boxes(total_amount, box_size) )
+	end
+end
+
+require "./kgm-uppgift21c.rb"
+
+class Uppgift21cTest < Test::Unit::TestCase
+
+	def test_new_boxmachine
+
+		#setup
+		total_amount = 1000
+		box_size = 6
+
+		my_machine = Boxmachine.new( total_amount, box_size )
+
+		# check we got something back (i.e. my_machine != nil)
+		assert( my_machine )
+
 	end
 end
