@@ -159,4 +159,11 @@ class Uppgift21dTest < Test::Unit::TestCase
 		assert_equal( 12, my_machine.storage )
 	end
 
+	def test_fill_specified_number_of_boxes_with_insufficient_storage
+		my_machine = setup_boxmachine( 10,6 )
+		assert_equal( nil, my_machine.fill( 2 ) )
+		assert_equal( 10, my_machine.storage )
+	end
+
+
 end

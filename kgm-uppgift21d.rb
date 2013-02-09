@@ -3,18 +3,16 @@
 =begin
 # Running tests:
 
-..............E.
+...............F.
 
-Finished tests in 0.004089s, 3912.9371 tests/s, 4402.0543 assertions/s.
+Finished tests in 0.004210s, 4038.0048 tests/s, 4988.1235 assertions/s.
 
-  1) Error:
-test_fill_specified_number_of_boxes(Uppgift21dTest):
-ArgumentError: wrong number of arguments (1 for 0)
-    /Users/kgm/projects/pft/pft-uppgift2/kgm-uppgift21d.rb:17:in `fill'
-    kgm-uppgift21-test.rb:158:in `test_fill_specified_number_of_boxes'
+  1) Failure:
+test_fill_specified_number_of_boxes_with_insufficient_storage(Uppgift21dTest) [kgm-uppgift21-test.rb:164]:
+<nil> expected but was
+<2>.
 
-16 tests, 18 assertions, 0 failures, 1 errors, 0 skips
-
+17 tests, 21 assertions, 1 failures, 0 errors, 0 skips
 =end
 
 class Boxmachine21d
