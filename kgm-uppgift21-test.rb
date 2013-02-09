@@ -84,7 +84,7 @@ require "./kgm-uppgift21d.rb"
 class Uppgift21dTest < Test::Unit::TestCase
 
 	def setup_boxmachine( total_amount = 1000, box_size = 6 )
-		return my_machine = Boxmachine.new( total_amount, box_size )
+		return my_machine = Boxmachine21d.new( total_amount, box_size )
 	end
 
 	def test_new_boxmachine
@@ -142,6 +142,21 @@ class Uppgift21dTest < Test::Unit::TestCase
 		my_machine.load(1)
 		assert_equal( 1001, my_machine.storage )
 
+	end
+
+	def test_boxmachine_has_no_storage_setter
+
+		my_machine = setup_boxmachine
+
+		assert_raise NoMethodError do
+			my_machine.storage = 100 # also, don't reopen Boxmachine class from uppgift21c...
+		end
+	end
+
+	def test_fill_specified_number_of_boxes
+		my_machine = setup_boxmachine( 18,6 )
+		assert_equal( 1, my_machine.fill( 1 ) )
+		assert_equal( 12, my_machine.storage )
 	end
 
 end

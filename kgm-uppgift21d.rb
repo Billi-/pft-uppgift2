@@ -3,21 +3,24 @@
 =begin
 # Running tests:
 
-...........E..
+..............E.
 
-Finished tests in 0.007271s, 1925.4573 tests/s, 2200.5226 assertions/s.
+Finished tests in 0.004089s, 3912.9371 tests/s, 4402.0543 assertions/s.
 
   1) Error:
-test_boxmachine_load_increases_storage(Uppgift21dTest):
-NoMethodError: private method `load' called for #<Boxmachine:0x007f92910203c0 @storage=1000, @box_size=6>
-    kgm-uppgift21-test.rb:142:in `test_boxmachine_load_increases_storage'
+test_fill_specified_number_of_boxes(Uppgift21dTest):
+ArgumentError: wrong number of arguments (1 for 0)
+    /Users/kgm/projects/pft/pft-uppgift2/kgm-uppgift21d.rb:17:in `fill'
+    kgm-uppgift21-test.rb:158:in `test_fill_specified_number_of_boxes'
 
-14 tests, 16 assertions, 0 failures, 1 errors, 0 skips
+16 tests, 18 assertions, 0 failures, 1 errors, 0 skips
+
 =end
 
-class Boxmachine
+class Boxmachine21d
 
-	attr_accessor :storage, :box_size
+	attr_accessor :box_size
+	attr_reader :storage
 
 	def initialize( total_amount, box_size )
 		# transfer initial values into instance variables
