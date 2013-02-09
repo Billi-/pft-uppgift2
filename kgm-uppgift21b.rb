@@ -16,3 +16,7 @@ NoMethodError: undefined method `fill_boxes' for #<Uppgift21Test:0x007f91ed0928e
 
 1 tests, 0 assertions, 0 failures, 1 errors, 0 skips
 =end
+
+def fill_boxes
+
+end
