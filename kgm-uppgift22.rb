@@ -8,6 +8,8 @@ words.map! { |w| w.chomp }
 puts words.inspect #debug
 
 # slumpa fram det rätta ordet från listan
+target = words[ rand(0...words.length) ]
+puts target.inspect #debug
 
 # kör spel-loopen:
 
