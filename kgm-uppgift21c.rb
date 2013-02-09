@@ -1,19 +1,18 @@
 # encoding: utf-8
 
 =begin
-	
 # Running tests:
 
-..E..
+..F....
 
-Finished tests in 0.001326s, 3770.7391 tests/s, 3016.5913 assertions/s.
+Finished tests in 0.002488s, 2813.5048 tests/s, 3215.4341 assertions/s.
 
-  1) Error:
-test_boxmachine_fill_one_box(Uppgift21cTest):
-NoMethodError: undefined method `fill' for #<Boxmachine:0x007f8f7a826bd8 @storage=6, @box_size=6>
-    kgm-uppgift21-test.rb:65:in `test_boxmachine_fill_one_box'
+  1) Failure:
+test_boxmachine_fill_deducts_from_storage(Uppgift21cTest) [kgm-uppgift21-test.rb:78]:
+<4> expected but was
+<10>.
 
-5 tests, 4 assertions, 0 failures, 1 errors, 0 skips
+7 tests, 8 assertions, 1 failures, 0 errors, 0 skips
 =end
 
 class Boxmachine

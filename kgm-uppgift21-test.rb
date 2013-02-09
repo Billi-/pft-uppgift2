@@ -70,4 +70,11 @@ class Uppgift21cTest < Test::Unit::TestCase
 		my_machine = setup_boxmachine( 5, 6 )
 		assert_equal( 0, my_machine.fill )
 	end		
+
+	def test_boxmachine_fill_deducts_from_storage
+
+		my_machine = setup_boxmachine( 10,6 )
+		assert_equal( 1, my_machine.fill )
+		assert_equal( 4, my_machine.storage )
+	end
 end
