@@ -132,4 +132,16 @@ class Uppgift21dTest < Test::Unit::TestCase
 		assert_equal( 1, my_machine.fill )
 		assert_equal( 4, my_machine.storage )
 	end
+
+	def test_boxmachine_load_increases_storage
+
+		total_amount = 1000
+		my_machine = setup_boxmachine( total_amount )
+		assert_equal( total_amount, my_machine.storage )
+
+		my_machine.load(1)
+		assert_equal( 1001, my_machine.storage )
+
+	end
+
 end
