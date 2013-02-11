@@ -19,19 +19,27 @@ $hanged_parts = {}
 end
 #puts $hanged_parts.inspect #debug
 
+# skriv ut de kroppsdelar som är hängda
 def print_hanged_parts
 	$hanged_parts.each do |part, is_hanged|
 		print part + " " if is_hanged
 	end
 end
 
+# skapa tom lista på tidigare gissningar
+guessed_letters = []
 
 # kör spel-loopen:
 loop do
  # skriv ut hängda kroppsdelar
+ puts "På galgen: "
  print_hanged_parts
 
  # skriv ut gissade bokstäver
+ puts "Dina gissningar hittils: " 
+ guessed_letters.each do |letter|
+ 	print letter + " "
+ end
  # skriv ut ordet med icke gissade bokstäver som #
  # läs in gissning
 
