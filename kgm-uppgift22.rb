@@ -13,6 +13,39 @@ class Hangman
 		#puts @hanged_parts.inspect #debug
 	end
 
+	def play_game
+		new_game
+		loop do
+			# skriv ut ordet med icke gissade bokstäver som #
+			print_target_word
+
+			# läs in gissning
+			print "Din gissning (en bokstav)> "
+			guess = gets.chomp # TODO input error handling
+
+			unless guess_in_target( guess ) then
+				puts "Du gissade fel!"
+
+				# om spelaren är hängd, gå ur spel-loopen
+				if all_parts_hanged? then # all parts are hanged..
+					return false
+				end
+			else
+				# om spelaren har gissat ordet, gå ur spel-loopen
+				if has_guessed_word? then
+					return true
+				end
+			end
+
+			# skriv ut hängda kroppsdelar
+			print_hanged_parts
+
+			# skriv ut gissade bokstäver
+			print_guessed_letters	
+		end
+	end
+
+
 	def new_game
 		# slumpa fram det rätta ordet från listan
 		@target = @words[ rand(0...@words.length) ]
@@ -99,38 +132,13 @@ words.map! { |w| w.chomp }
 #puts words.inspect #debug
 
 game = Hangman.new( words )
-game.new_game
-
-# kör spel-loopen:
 loop do
-	# skriv ut ordet med icke gissade bokstäver som #
-	game.print_target_word
-
-	# läs in gissning
-	print "Din gissning (en bokstav)> "
-	guess = gets.chomp # TODO input error handling
-
-	unless game.guess_in_target( guess ) then
-		puts "Du gissade fel!"
-
-		# om spelaren är hängd, gå ur spel-loopen
-		if game.all_parts_hanged? then # all parts are hanged..
-			puts "Spelet är över!"
-			exit
-		end
+	if game.play_game then
+		puts "Grattis, du har vunnit!"
 	else
-		# om spelaren har gissat ordet, gå ur spel-loopen
-		if game.has_guessed_word? then
-			puts "Grattis, du har vunnit!"
-			exit
-		end
+		puts "Du förlorade!"
 	end
 
-	# skriv ut hängda kroppsdelar
-	game.print_hanged_parts
-
-	# skriv ut gissade bokstäver
-	game.print_guessed_letters	
+	puts "Vill du spela igen?> "
+	exit unless gets.chomp =~ /^[jJyY]/ 
 end
-
-# skriv ut det rätta ordet, samt antal gissningar
