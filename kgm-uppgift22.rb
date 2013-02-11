@@ -11,8 +11,8 @@ words.map! { |w| w.chomp }
 target = words[ rand(0...words.length) ]
 puts "ordet är " + target.inspect #debug
 
-target_letters = target.split(//) # split empty regexp => split to individual letters
-puts target_letters.inspect #debug
+$target_letters = target.split(//) # split empty regexp => split to individual letters
+puts $target_letters.inspect #debug
 
 # skapa global hash med kroppsdelar, inkl. om de har hängts ännu
 $hanged_parts = {}
@@ -24,18 +24,30 @@ end
 
 # skriv ut de kroppsdelar som är hängda
 
-# denna funktion gör två saker, borde göra en sak i taget
-
 def print_hanged_parts
-	hanged_count = 0
 	$hanged_parts.each do |part, is_hanged|
-		if is_hanged then
-			print part + " "
-			puts hanged_count += 1
-		end
+		print part + " " if is_hanged 
 	end
-	hanged_count
 end
+
+def all_parts_hanged?
+	all_hanged = true
+	$hanged_parts.each do |part, is_hanged|
+		all_hanged = false unless is_hanged
+	end
+	all_hanged
+end
+
+def has_guessed_word?
+	won_flag = true
+	$target_letters.each do |letter|
+		won_flag = false unless guessed_letters.member?( letter )
+	end
+	won_flag
+end
+puts
+
+
 
 # skapa tom lista på tidigare gissningar
 guessed_letters = [] # = ["a"] #debug
@@ -44,9 +56,10 @@ guessed_letters = [] # = ["a"] #debug
 loop do
  # skriv ut hängda kroppsdelar
  puts "På galgen: "
+ print_hanged_parts
 
  # om spelaren är hängd, gå ur spel-loopen
- if print_hanged_parts == $hanged_parts.length then # all parts are hanged..
+ if all_parts_hanged? then # all parts are hanged..
  	puts "Spelet är över!"
  	exit
  end
@@ -61,8 +74,11 @@ puts
 
 puts "Det sökta ordet: "
  # skriv ut ordet med icke gissade bokstäver som #
+
+# separate into two different methods
+
 won_flag = true
-target_letters.each do |letter|
+$target_letters.each do |letter|
 	if guessed_letters.member?( letter ) then
 		print letter
 	else
@@ -73,7 +89,7 @@ end
 puts
 
  # om spelaren har gissat ordet, gå ur spel-loopen
- if won_flag then
+ if has_guessed_word? then
  	puts "Grattis, du har vunnit!"
  	exit
  end
@@ -86,7 +102,7 @@ puts
  guessed_letters << guess
 
  # om gissningen var fel, tala om det för spelaren
- unless target_letters.member?( guess ) then
+ unless $target_letters.member?( guess ) then
  	puts "Du gissade fel!"
 
 	$hanged_parts.each do |part, is_hanged|
