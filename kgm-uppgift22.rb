@@ -65,9 +65,27 @@ class Hangman
 			end
 		end
 	end
+
+	def check_guessed_letter( guess )
+		@guessed_letters << guess
+
+
+
+		# om gissningen var fel, tala om det för spelaren
+		unless @target_letters.member?( guess ) then
+		 	puts "Du gissade fel!"
+
+			@hanged_parts.each do |part, is_hanged|
+				unless is_hanged then
+					@hanged_parts[part] = true
+					break 
+				end
+			end 	
+		end
+	end
 end
 
-end
+
 
 # läs in lista av ord från fil
 words = File.open('words.txt').readlines
@@ -112,19 +130,7 @@ puts
  guess = gets.chomp
  # TODO input error handling
 
- $guessed_letters << guess
-
- # om gissningen var fel, tala om det för spelaren
- unless $target_letters.member?( guess ) then
- 	puts "Du gissade fel!"
-
-	$hanged_parts.each do |part, is_hanged|
-		unless is_hanged then
-			$hanged_parts[part] = true
-			break 
-		end
-	end 	
- end
+ game.check_guessed_letter( guess )
 
 
 
