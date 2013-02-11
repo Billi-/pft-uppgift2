@@ -56,6 +56,16 @@ class Hangman
 		won_flag
 	end
 
+	def print_target_word
+		@target_letters.each do |letter|
+			if @guessed_letters.member?( letter ) then
+				print letter
+			else
+				print "#"
+			end
+		end
+	end
+end
 
 end
 
@@ -88,17 +98,11 @@ loop do
 
 puts "Det sökta ordet: "
  # skriv ut ordet med icke gissade bokstäver som #
-$target_letters.each do |letter|
-	if $guessed_letters.member?( letter ) then
-		print letter
-	else
-		print "#"
-	end
-end
+game.print_target_word
 puts
 
  # om spelaren har gissat ordet, gå ur spel-loopen
- if has_guessed_word? then
+ if game.has_guessed_word? then
  	puts "Grattis, du har vunnit!"
  	exit
  end
