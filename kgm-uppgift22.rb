@@ -3,6 +3,11 @@
 # uppgift22
 
 class Hangman 
+	@words
+
+	def initialize( words )
+		@words = words
+	end
 end
 
 
@@ -10,6 +15,9 @@ end
 words = File.open('words.txt').readlines
 words.map! { |w| w.chomp }
 #puts words.inspect #debug
+
+game = Hangman.new( words )
+
 
 # slumpa fram det rätta ordet från listan
 target = words[ rand(0...words.length) ]
