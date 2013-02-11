@@ -24,9 +24,14 @@ end
 
 # skriv ut de kroppsdelar som är hängda
 def print_hanged_parts
+	hanged_count = 0
 	$hanged_parts.each do |part, is_hanged|
-		print part + " " if is_hanged
+		if is_hanged then
+			print part + " "
+			puts hanged_count += 1
+		end
 	end
+	hanged_count
 end
 
 # skapa tom lista på tidigare gissningar
@@ -36,7 +41,12 @@ guessed_letters = [] # = ["a"] #debug
 loop do
  # skriv ut hängda kroppsdelar
  puts "På galgen: "
- print_hanged_parts
+
+ # om spelaren är hängd, gå ur spel-loopen
+ if print_hanged_parts == $hanged_parts.length then # all parts are hanged..
+ 	puts "Spelet är över!"
+ 	exit
+ end
  puts
 
  # skriv ut gissade bokstäver
@@ -48,14 +58,22 @@ puts
 
 puts "Det sökta ordet: "
  # skriv ut ordet med icke gissade bokstäver som #
+won_flag = true
 target_letters.each do |letter|
 	if guessed_letters.member?( letter ) then
 		print letter
 	else
 		print "#"
+		won_flag = false
 	end
 end
 puts
+
+ # om spelaren har gissat ordet, gå ur spel-loopen
+ if won_flag then
+ 	puts "Grattis, du har vunnit!"
+ 	exit
+ end
 
  # läs in gissning
  print "Din gissning (en bokstav)> "
@@ -76,9 +94,7 @@ puts
 	end 	
  end
 
- # om spelaren är hängd, gå ur spel-loopen
- 
- # om spelaren har gissat ordet, gå ur spel-loopen
+
 
 #	break #debug	
 end
