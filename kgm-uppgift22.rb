@@ -66,21 +66,24 @@ class Hangman
 		end
 	end
 
-	def check_guessed_letter( guess )
+	def guess_in_target( guess )
 		@guessed_letters << guess
-
-
 
 		# om gissningen var fel, tala om det för spelaren
 		unless @target_letters.member?( guess ) then
-		 	puts "Du gissade fel!"
+			hang_another_part
+			return false
+		else
+			return true
+		end
+	end
 
-			@hanged_parts.each do |part, is_hanged|
-				unless is_hanged then
-					@hanged_parts[part] = true
-					break 
-				end
-			end 	
+	def hang_another_part
+		@hanged_parts.each do |part, is_hanged|
+			unless is_hanged then
+				@hanged_parts[part] = true
+				return
+			end
 		end
 	end
 end
@@ -97,44 +100,41 @@ game.new_game
 
 # kör spel-loopen:
 loop do
- # skriv ut hängda kroppsdelar
- puts "På galgen: "
- game.print_hanged_parts
- puts
+	# skriv ut hängda kroppsdelar
+	puts "På galgen: "
+	game.print_hanged_parts
+	puts
 
- # om spelaren är hängd, gå ur spel-loopen
- if game.all_parts_hanged? then # all parts are hanged..
- 	puts "Spelet är över!"
- 	exit
- end
- puts
+	# om spelaren är hängd, gå ur spel-loopen
+	if game.all_parts_hanged? then # all parts are hanged..
+		puts "Spelet är över!"
+		exit
+	end
+	puts
 
- # skriv ut gissade bokstäver
- puts "Dina gissningar hittils: " 
- game.print_guessed_letters
- puts
+	# skriv ut gissade bokstäver
+	puts "Dina gissningar hittils: " 
+	game.print_guessed_letters
+	puts
 
-puts "Det sökta ordet: "
- # skriv ut ordet med icke gissade bokstäver som #
-game.print_target_word
-puts
+	puts "Det sökta ordet: "
+	# skriv ut ordet med icke gissade bokstäver som #
+	game.print_target_word
+	puts
 
- # om spelaren har gissat ordet, gå ur spel-loopen
- if game.has_guessed_word? then
- 	puts "Grattis, du har vunnit!"
- 	exit
- end
+	# om spelaren har gissat ordet, gå ur spel-loopen
+	if game.has_guessed_word? then
+		puts "Grattis, du har vunnit!"
+		exit
+	end
 
- # läs in gissning
- print "Din gissning (en bokstav)> "
- guess = gets.chomp
- # TODO input error handling
+	# läs in gissning
+	print "Din gissning (en bokstav)> "
+	guess = gets.chomp
+	# TODO input error handling
 
- game.check_guessed_letter( guess )
+	puts "Du gissade fel!" unless game.guess_in_target( guess )
 
-
-
-#	break #debug	
 end
 
 # skriv ut det rätta ordet, samt antal gissningar
