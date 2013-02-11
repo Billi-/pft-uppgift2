@@ -3,8 +3,6 @@
 # uppgift22
 
 class Hangman 
-	@words
-
 	def initialize( words )
 		@words = words
 		@hanged_parts = {}
@@ -61,7 +59,8 @@ class Hangman
 	end
 
 	def print_target_word
-		puts "Det sökta ordet: \""
+		puts
+		print "Det sökta ordet: \""
 		@target_letters.each do |letter|
 			if @guessed_letters.member?( letter ) then
 				print letter.upcase
@@ -104,12 +103,6 @@ game.new_game
 
 # kör spel-loopen:
 loop do
-	# skriv ut hängda kroppsdelar
-	game.print_hanged_parts
-
-	# skriv ut gissade bokstäver
-	game.print_guessed_letters
-
 	# skriv ut ordet med icke gissade bokstäver som #
 	game.print_target_word
 
@@ -132,6 +125,12 @@ loop do
 			exit
 		end
 	end
+
+	# skriv ut hängda kroppsdelar
+	game.print_hanged_parts
+
+	# skriv ut gissade bokstäver
+	game.print_guessed_letters	
 end
 
 # skriv ut det rätta ordet, samt antal gissningar
