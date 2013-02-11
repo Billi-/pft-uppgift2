@@ -13,7 +13,6 @@ class Hangman
 			@hanged_parts[part] = false
 		end
 		#puts @hanged_parts.inspect #debug
-
 	end
 
 	def new_game
@@ -23,6 +22,9 @@ class Hangman
 
 		@target_letters = @target.split(//) # split empty regexp => split to individual letters
 		#puts @target_letters.inspect #debug
+
+		# skapa tom lista på tidigare gissningar
+		@guessed_letters = [] # = ["a"] #debug
 	end
 
 	# skriv ut de kroppsdelar som är hängda
@@ -40,6 +42,14 @@ class Hangman
 		all_hanged
 	end
 
+	def has_guessed_word?
+		won_flag = true
+		@target_letters.each do |letter|
+			won_flag = false unless @guessed_letters.member?( letter )
+		end
+		won_flag
+	end
+
 
 end
 
@@ -53,20 +63,7 @@ game = Hangman.new( words )
 game.new_game
 
 
-
-def has_guessed_word?
-	won_flag = true
-	$target_letters.each do |letter|
-		won_flag = false unless $guessed_letters.member?( letter )
-	end
-	won_flag
-end
 puts
-
-
-
-# skapa tom lista på tidigare gissningar
-$guessed_letters = [] # = ["a"] #debug
 
 # kör spel-loopen:
 loop do
