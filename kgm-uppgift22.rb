@@ -11,6 +11,9 @@ words.map! { |w| w.chomp }
 target = words[ rand(0...words.length) ]
 puts "ordet är " + target.inspect #debug
 
+target_letters = target.split(//) # split empty regexp => split to individual letters
+puts target_letters.inspect #debug
+
 # skapa global hash med kroppsdelar, inkl. om de har hängts ännu
 $hanged_parts = {}
 # %w är syntaktiskt socker för att skapa en lista av ord, den motsvarar ["head", "chest", ... ]
@@ -27,7 +30,7 @@ def print_hanged_parts
 end
 
 # skapa tom lista på tidigare gissningar
-guessed_letters = []
+guessed_letters = [] # = ["a"] #debug
 
 # kör spel-loopen:
 loop do
@@ -40,7 +43,19 @@ loop do
  guessed_letters.each do |letter|
  	print letter + " "
  end
+puts
+
+puts "Det sökta ordet: "
  # skriv ut ordet med icke gissade bokstäver som #
+target_letters.each do |letter|
+	if guessed_letters.member?( letter ) then
+		print letter
+	else
+		print "#"
+	end
+end
+puts
+
  # läs in gissning
 
  # om gissningen var fel, tala om det för spelaren
