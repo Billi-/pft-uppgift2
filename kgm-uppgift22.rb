@@ -2,6 +2,10 @@
 
 # uppgift22
 
+class Hangman 
+end
+
+
 # läs in lista av ord från fil
 words = File.open('words.txt').readlines
 words.map! { |w| w.chomp }
