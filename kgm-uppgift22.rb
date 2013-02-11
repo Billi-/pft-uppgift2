@@ -42,6 +42,12 @@ class Hangman
 		all_hanged
 	end
 
+	def print_guessed_letters
+		@guessed_letters.each do |letter|
+			print letter + " "
+		end
+	end
+
 	def has_guessed_word?
 		won_flag = true
 		@target_letters.each do |letter|
@@ -53,7 +59,6 @@ class Hangman
 
 end
 
-
 # läs in lista av ord från fil
 words = File.open('words.txt').readlines
 words.map! { |w| w.chomp }
@@ -62,17 +67,15 @@ words.map! { |w| w.chomp }
 game = Hangman.new( words )
 game.new_game
 
-
-puts
-
 # kör spel-loopen:
 loop do
  # skriv ut hängda kroppsdelar
  puts "På galgen: "
- print_hanged_parts
+ game.print_hanged_parts
+ puts
 
  # om spelaren är hängd, gå ur spel-loopen
- if all_parts_hanged? then # all parts are hanged..
+ if game.all_parts_hanged? then # all parts are hanged..
  	puts "Spelet är över!"
  	exit
  end
@@ -80,10 +83,8 @@ loop do
 
  # skriv ut gissade bokstäver
  puts "Dina gissningar hittils: " 
- $guessed_letters.each do |letter|
- 	print letter + " "
- end
-puts
+ game.print_guessed_letters
+ puts
 
 puts "Det sökta ordet: "
  # skriv ut ordet med icke gissade bokstäver som #
