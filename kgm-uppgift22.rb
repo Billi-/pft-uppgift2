@@ -6,11 +6,6 @@ class Hangman
 	def initialize( words )
 		@words = words
 		@hanged_parts = {}
-		# %w är syntaktiskt socker för att skapa en lista av ord, den motsvarar ["head", "chest", ... ]
-		%w/head chest left_arm right_arm left_leg right_leg left_hand right_hand left_foot right_foot/.each do |part|
-			@hanged_parts[part] = false
-		end
-		#puts @hanged_parts.inspect #debug
 	end
 
 	def play_game
@@ -45,7 +40,7 @@ class Hangman
 		end
 	end
 
-
+	private
 	def new_game
 		# slumpa fram det rätta ordet från listan
 		@target = @words[ rand(0...@words.length) ]
@@ -53,6 +48,12 @@ class Hangman
 
 		@target_letters = @target.split(//) # split empty regexp => split to individual letters
 		#puts @target_letters.inspect #debug
+
+		# %w är syntaktiskt socker för att skapa en lista av ord, den motsvarar ["head", "chest", ... ]
+		%w/head chest left_arm right_arm left_leg right_leg left_hand right_hand left_foot right_foot/.each do |part|
+			@hanged_parts[part] = false
+		end
+		#puts @hanged_parts.inspect #debug
 
 		# skapa tom lista på tidigare gissningar
 		@guessed_letters = [] # = ["a"] #debug
