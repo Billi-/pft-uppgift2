@@ -23,6 +23,9 @@ end
 #puts $hanged_parts.inspect #debug
 
 # skriv ut de kroppsdelar som är hängda
+
+# denna funktion gör två saker, borde göra en sak i taget
+
 def print_hanged_parts
 	hanged_count = 0
 	$hanged_parts.each do |part, is_hanged|
