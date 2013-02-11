@@ -29,9 +29,11 @@ class Hangman
 
 	# skriv ut de kroppsdelar som är hängda
 	def print_hanged_parts
+		puts "Hängda delar hittils: "
 		@hanged_parts.each do |part, is_hanged|
 			print part + " " if is_hanged 
 		end
+		puts
 	end
 
 	def all_parts_hanged?
@@ -43,9 +45,11 @@ class Hangman
 	end
 
 	def print_guessed_letters
+		print "Dina gissningar hittils: " 
 		@guessed_letters.each do |letter|
-			print letter + " "
+			print letter.upcase + " "
 		end
+		puts
 	end
 
 	def has_guessed_word?
@@ -57,13 +61,15 @@ class Hangman
 	end
 
 	def print_target_word
+		puts "Det sökta ordet: \""
 		@target_letters.each do |letter|
 			if @guessed_letters.member?( letter ) then
-				print letter
+				print letter.upcase
 			else
 				print "#"
 			end
 		end
+		puts "\""
 	end
 
 	def guess_in_target( guess )
@@ -88,8 +94,6 @@ class Hangman
 	end
 end
 
-
-
 # läs in lista av ord från fil
 words = File.open('words.txt').readlines
 words.map! { |w| w.chomp }
@@ -101,40 +105,33 @@ game.new_game
 # kör spel-loopen:
 loop do
 	# skriv ut hängda kroppsdelar
-	puts "På galgen: "
 	game.print_hanged_parts
-	puts
-
-	# om spelaren är hängd, gå ur spel-loopen
-	if game.all_parts_hanged? then # all parts are hanged..
-		puts "Spelet är över!"
-		exit
-	end
-	puts
 
 	# skriv ut gissade bokstäver
-	puts "Dina gissningar hittils: " 
 	game.print_guessed_letters
-	puts
 
-	puts "Det sökta ordet: "
 	# skriv ut ordet med icke gissade bokstäver som #
 	game.print_target_word
-	puts
-
-	# om spelaren har gissat ordet, gå ur spel-loopen
-	if game.has_guessed_word? then
-		puts "Grattis, du har vunnit!"
-		exit
-	end
 
 	# läs in gissning
 	print "Din gissning (en bokstav)> "
-	guess = gets.chomp
-	# TODO input error handling
+	guess = gets.chomp # TODO input error handling
 
-	puts "Du gissade fel!" unless game.guess_in_target( guess )
+	unless game.guess_in_target( guess ) then
+		puts "Du gissade fel!"
 
+		# om spelaren är hängd, gå ur spel-loopen
+		if game.all_parts_hanged? then # all parts are hanged..
+			puts "Spelet är över!"
+			exit
+		end
+	else
+		# om spelaren har gissat ordet, gå ur spel-loopen
+		if game.has_guessed_word? then
+			puts "Grattis, du har vunnit!"
+			exit
+		end
+	end
 end
 
 # skriv ut det rätta ordet, samt antal gissningar
