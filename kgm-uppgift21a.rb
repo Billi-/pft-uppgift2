@@ -4,6 +4,10 @@
 total_amount = 1000
 in_box = 6
 
+#
+# needless comments
+#
+
 # 2. beräkna antal fulla lådor
 no_of_boxes = total_amount / in_box
 
