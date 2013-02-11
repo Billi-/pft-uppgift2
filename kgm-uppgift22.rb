@@ -41,7 +41,7 @@ end
 def has_guessed_word?
 	won_flag = true
 	$target_letters.each do |letter|
-		won_flag = false unless guessed_letters.member?( letter )
+		won_flag = false unless $guessed_letters.member?( letter )
 	end
 	won_flag
 end
@@ -50,7 +50,7 @@ puts
 
 
 # skapa tom lista på tidigare gissningar
-guessed_letters = [] # = ["a"] #debug
+$guessed_letters = [] # = ["a"] #debug
 
 # kör spel-loopen:
 loop do
@@ -67,7 +67,7 @@ loop do
 
  # skriv ut gissade bokstäver
  puts "Dina gissningar hittils: " 
- guessed_letters.each do |letter|
+ $guessed_letters.each do |letter|
  	print letter + " "
  end
 puts
@@ -79,7 +79,7 @@ puts "Det sökta ordet: "
 
 won_flag = true
 $target_letters.each do |letter|
-	if guessed_letters.member?( letter ) then
+	if $guessed_letters.member?( letter ) then
 		print letter
 	else
 		print "#"
@@ -99,7 +99,7 @@ puts
  guess = gets.chomp
  # TODO input error handling
 
- guessed_letters << guess
+ $guessed_letters << guess
 
  # om gissningen var fel, tala om det för spelaren
  unless $target_letters.member?( guess ) then
