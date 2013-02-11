@@ -88,16 +88,11 @@ loop do
 
 puts "Det sökta ordet: "
  # skriv ut ordet med icke gissade bokstäver som #
-
-# separate into two different methods
-
-won_flag = true
 $target_letters.each do |letter|
 	if $guessed_letters.member?( letter ) then
 		print letter
 	else
 		print "#"
-		won_flag = false
 	end
 end
 puts
