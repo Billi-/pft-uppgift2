@@ -8,6 +8,14 @@ class Hangman
 	def initialize( words )
 		@words = words
 	end
+
+	def new_game
+		# slumpa fram det rätta ordet från listan
+		@target = @words[ rand(0...@words.length) ]
+		puts "ordet är " + target.inspect #debug
+
+		@target_letters = @target.split(//) # split empty regexp => split to individual letters
+		puts @target_letters.inspect #debug
 end
 
 
@@ -18,13 +26,8 @@ words.map! { |w| w.chomp }
 
 game = Hangman.new( words )
 
+game.new_game
 
-# slumpa fram det rätta ordet från listan
-target = words[ rand(0...words.length) ]
-puts "ordet är " + target.inspect #debug
-
-$target_letters = target.split(//) # split empty regexp => split to individual letters
-puts $target_letters.inspect #debug
 
 # skapa global hash med kroppsdelar, inkl. om de har hängts ännu
 $hanged_parts = {}
