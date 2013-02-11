@@ -11,7 +11,9 @@ puts words.inspect #debug
 target = words[ rand(0...words.length) ]
 puts target.inspect #debug
 
+
 # kör spel-loopen:
+loop do
 
  # skriv ut hängda kroppsdelar
  # skriv ut gissade bokstäver
@@ -21,5 +23,7 @@ puts target.inspect #debug
  # om gissningen var fel, tala om det för spelaren
  # om spelaren är hängd, gå ur spel-loopen
  # om spelaren har gissat ordet, gå ur spel-loopen
+	
+end
 
 # skriv ut det rätta ordet, samt antal gissningar
