@@ -7,15 +7,40 @@ class Hangman
 
 	def initialize( words )
 		@words = words
+		@hanged_parts = {}
+		# %w är syntaktiskt socker för att skapa en lista av ord, den motsvarar ["head", "chest", ... ]
+		%w/head chest left_arm right_arm left_leg right_leg left_hand right_hand left_foot right_foot/.each do |part|
+			@hanged_parts[part] = false
+		end
+		#puts @hanged_parts.inspect #debug
+
 	end
 
 	def new_game
 		# slumpa fram det rätta ordet från listan
 		@target = @words[ rand(0...@words.length) ]
-		puts "ordet är " + target.inspect #debug
+		puts "ordet är " + @target.inspect #debug
 
 		@target_letters = @target.split(//) # split empty regexp => split to individual letters
-		puts @target_letters.inspect #debug
+		#puts @target_letters.inspect #debug
+	end
+
+	# skriv ut de kroppsdelar som är hängda
+	def print_hanged_parts
+		@hanged_parts.each do |part, is_hanged|
+			print part + " " if is_hanged 
+		end
+	end
+
+	def all_parts_hanged?
+		all_hanged = true
+		@hanged_parts.each do |part, is_hanged|
+			all_hanged = false unless is_hanged
+		end
+		all_hanged
+	end
+
+
 end
 
 
@@ -25,33 +50,9 @@ words.map! { |w| w.chomp }
 #puts words.inspect #debug
 
 game = Hangman.new( words )
-
 game.new_game
 
 
-# skapa global hash med kroppsdelar, inkl. om de har hängts ännu
-$hanged_parts = {}
-# %w är syntaktiskt socker för att skapa en lista av ord, den motsvarar ["head", "chest", ... ]
-%w/head chest left_arm right_arm left_leg right_leg left_hand right_hand left_foot right_foot/.each do |part|
-	$hanged_parts[part] = false
-end
-#puts $hanged_parts.inspect #debug
-
-# skriv ut de kroppsdelar som är hängda
-
-def print_hanged_parts
-	$hanged_parts.each do |part, is_hanged|
-		print part + " " if is_hanged 
-	end
-end
-
-def all_parts_hanged?
-	all_hanged = true
-	$hanged_parts.each do |part, is_hanged|
-		all_hanged = false unless is_hanged
-	end
-	all_hanged
-end
 
 def has_guessed_word?
 	won_flag = true
