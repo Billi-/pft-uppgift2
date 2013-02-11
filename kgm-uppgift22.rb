@@ -37,6 +37,7 @@ loop do
  # skriv ut hängda kroppsdelar
  puts "På galgen: "
  print_hanged_parts
+ puts
 
  # skriv ut gissade bokstäver
  puts "Dina gissningar hittils: " 
@@ -57,12 +58,29 @@ end
 puts
 
  # läs in gissning
+ print "Din gissning (en bokstav)> "
+ guess = gets.chomp
+ # TODO input error handling
+
+ guessed_letters << guess
 
  # om gissningen var fel, tala om det för spelaren
+ unless target_letters.member?( guess ) then
+ 	puts "Du gissade fel!"
+
+	$hanged_parts.each do |part, is_hanged|
+		unless is_hanged then
+			$hanged_parts[part] = true
+			break 
+		end
+	end 	
+ end
+
  # om spelaren är hängd, gå ur spel-loopen
+ 
  # om spelaren har gissat ordet, gå ur spel-loopen
 
-	break #debug	
+#	break #debug	
 end
 
 # skriv ut det rätta ordet, samt antal gissningar
