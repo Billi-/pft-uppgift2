@@ -5,17 +5,32 @@
 # läs in lista av ord från fil
 words = File.open('words.txt').readlines
 words.map! { |w| w.chomp }
-puts words.inspect #debug
+#puts words.inspect #debug
 
 # slumpa fram det rätta ordet från listan
 target = words[ rand(0...words.length) ]
-puts target.inspect #debug
+puts "ordet är " + target.inspect #debug
+
+# skapa global hash med kroppsdelar, inkl. om de har hängts ännu
+$hanged_parts = {}
+# %w är syntaktiskt socker för att skapa en lista av ord, den motsvarar ["head", "chest", ... ]
+%w/head chest left_arm right_arm left_leg right_leg left_hand right_hand left_foot right_foot/.each do |part|
+	$hanged_parts[part] = false
+end
+#puts $hanged_parts.inspect #debug
+
+def print_hanged_parts
+	$hanged_parts.each do |part, is_hanged|
+		print part + " " if is_hanged
+	end
+end
 
 
 # kör spel-loopen:
 loop do
-
  # skriv ut hängda kroppsdelar
+ print_hanged_parts
+
  # skriv ut gissade bokstäver
  # skriv ut ordet med icke gissade bokstäver som #
  # läs in gissning
@@ -23,7 +38,8 @@ loop do
  # om gissningen var fel, tala om det för spelaren
  # om spelaren är hängd, gå ur spel-loopen
  # om spelaren har gissat ordet, gå ur spel-loopen
-	
+
+	break #debug	
 end
 
 # skriv ut det rätta ordet, samt antal gissningar
